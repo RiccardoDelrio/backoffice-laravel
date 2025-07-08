@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\VideoGameController ;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VideogameController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,5 +19,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/videogames', [VideogameController::class, 'index'])->name('videogames.index');
+Route::resource('videogames', VideoGameController::class);
 require __DIR__.'/auth.php';
