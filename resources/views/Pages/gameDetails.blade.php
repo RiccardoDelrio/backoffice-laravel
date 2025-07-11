@@ -1,32 +1,53 @@
 @extends('layouts.master')
+
+@section('title', $videogame->title . ' - SteamLike')
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center mt-4">
--        <div class="col-lg-8">
-            <!-- Header con breadcrumb -->
-            <nav aria-label="breadcrumb" class="mb-4">
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1>🎮 {{ $videogame->title }}</h1>
+        <p class="lead">{{ Str::limit($videogame->description, 100) }}</p>
+        <div class="d-flex gap-3 align-items-center">
+            @if($videogame->price > 0)
+                <span class="game-price fs-4">€{{ number_format($videogame->price, 2) }}</span>
+            @else
+                <span class="game-price fs-4 text-success">Gratuito</span>
+            @endif
+            @if($videogame->is_beta)
+                <span class="badge badge-steam bg-warning">BETA</span>
+            @else
+                <span class="badge badge-steam bg-success">Rilasciato</span>
+            @endif
+        </div>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Steam Breadcrumb -->
+            <nav aria-label="breadcrumb" class="steam-breadcrumb mb-4">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('videogames.index') }}">Games Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('videogames.index') }}">Libreria Giochi</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ $videogame->title }}</li>
                 </ol>
             </nav>
 
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
+            <div class="steam-card">
+                <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h4 class="mb-0">
-                                <i class="fas fa-gamepad me-2"></i>
-                                Game Details
+                                <i class="fas fa-info-circle me-2"></i>
+                                Dettagli del Gioco
                             </h4>
-                            <small class="opacity-75">Complete information about this game</small>
+                            <small class="text-muted">Informazioni complete su questo videogioco</small>
                         </div>
-                        <div>
-                            @if($videogame->is_beta)
-                                <span class="badge bg-warning fs-6">BETA</span>
-                            @else
-                                <span class="badge bg-success fs-6">Released</span>
-                            @endif
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('videogames.edit', $videogame->id) }}" class="btn-action primary">
+                                <i class="fas fa-edit"></i> Modifica
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -34,53 +55,77 @@
                 <div class="card-body p-0">
                     <div class="row g-0">
                         <!-- Immagine del gioco -->
-                        <div class="col-md-4">
-                            <img src="{{ $videogame->image }}" class="img-fluid h-100 w-100" style="object-fit: cover;" alt="{{ $videogame->title }}">
+                        <div class="col-md-5">
+                            <div class="game-image-container">
+                                <img src="{{ asset('storage/'.$videogame->image) }}" class="game-detail-image" alt="{{ $videogame->title }}">
+                            </div>
                         </div>
                         
                         <!-- Dettagli del gioco -->
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="p-4">
-                                <div class="d-flex justify-content-between align-items-start mb-3">
-                                    <h2 class="mb-0">{{ $videogame->title }}</h2>
-                                    <span class="badge bg-success fs-5">{{ $videogame->price }}</span>
+                                <div class="game-info">
+                                    <h2 class="game-title-detail">{{ $videogame->title }}</h2>
                                 </div>
 
-                                <p class="text-muted mb-4">{{ $videogame->description }}</p>
-
-                                <div class="row mb-4">
-                                    <div class="col-sm-6 mb-3">
-                                        <h6 class="text-muted mb-1">Developer</h6>
-                                        <p class="mb-0 fw-bold">{{ $videogame->developer }}</p>
+                                <div class="game-metadata">
+                                    <div class="row mb-4">
+                                        <div class="col-sm-6 mb-3">
+                                            <div class="info-box">
+                                                <h6 class="info-label">Sviluppatore</h6>
+                                                <p class="info-value">{{ $videogame->developer }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 mb-3">
+                                            <div class="info-box">
+                                                <h6 class="info-label">Anno di Rilascio</h6>
+                                                <p class="info-value">{{ $videogame->release_year }}</p>
+                                            </div>
+                                        </div>
+                                        @if($videogame->genres->isNotEmpty())
+                                        <div class="col-12 mb-3">
+                                            <div class="info-box">
+                                                <h6 class="info-label">Generi</h6>
+                                                <div class="game-genres">
+                                                    @foreach($videogame->genres as $genre)
+                                                        <span class="badge">{{ $genre->name }}</span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
+                                        @if($videogame->platforms->isNotEmpty())
+                                        <div class="col-12 mb-3">
+                                            <div class="info-box">
+                                                <h6 class="info-label">Piattaforme</h6>
+                                                <div class="game-platforms">
+                                                    @foreach($videogame->platforms as $platform)
+                                                        <span class="platform-badge">
+                                                            <i class="fab fa-{{ strtolower($platform->name) }}"></i>
+                                                            {{ $platform->name }}
+                                                        </span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
                                     </div>
-                                    <div class="col-sm-6 mb-3">
-                                        <h6 class="text-muted mb-1">Release Year</h6>
-                                        <p class="mb-0 fw-bold">{{ $videogame->release_year }}</p>
-                                    </div>
-                                    @if($videogame->genres->isNotEmpty())
-                                    <div class="col-12 mb-3">
-                                        <h6 class="text-muted mb-2">Genres</h6>
-                                        @foreach($videogame->genres as $genre)
-                                            <span class="badge bg-primary me-1">{{ $genre->name }}</span>
-                                        @endforeach
-                                    </div>
-                                    @endif
                                 </div>
 
                                 <!-- Azioni -->
-                                <div class="d-flex gap-2 pt-3 border-top">
-                                    <a href="{{ route('videogames.edit', $videogame->id) }}" class="btn btn-outline-secondary">
-                                        <i class="fas fa-edit"></i> Edit Game
+                                <div class="game-actions-detail">
+                                    <a href="{{ route('videogames.edit', $videogame->id) }}" class="btn-action primary">
+                                        <i class="fas fa-edit"></i> Modifica Gioco
                                     </a>
                                     <form action="{{ route('videogames.destroy', $videogame->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this game?')">
-                                            <i class="fas fa-trash"></i> Delete Game
+                                        <button type="submit" class="btn-action danger" onclick="return confirm('Sei sicuro di voler eliminare questo gioco?')">
+                                            <i class="fas fa-trash"></i> Elimina Gioco
                                         </button>
                                     </form>
-                                    <a href="{{ route('videogames.index') }}" class="btn btn-outline-primary ms-auto">
-                                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                                    <a href="{{ route('videogames.index') }}" class="btn-action secondary">
+                                        <i class="fas fa-arrow-left"></i> Torna alla Libreria
                                     </a>
                                 </div>
                             </div>
@@ -91,4 +136,5 @@
         </div>
     </div>
 </div>
+
 @endsection

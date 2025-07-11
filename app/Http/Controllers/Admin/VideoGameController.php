@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Genre;
+use App\Models\Platform;
 use App\Models\Videogame;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,7 @@ class VideoGameController extends Controller
      */
     public function index()
     {
-        $videogames = Videogame::with('genres')->get();
+        $videogames = Videogame::with('genres', 'platforms')->get();
         return view('Pages.gamesDashboard', compact('videogames'));
     }
 
@@ -25,7 +26,8 @@ class VideoGameController extends Controller
     public function create()
     {
         $genres = Genre::all();
-        return view('Pages.createGame', compact('genres'));
+        $platforms = Platform::all();
+        return view('Pages.createGame', compact('genres', 'platforms'));
     }
 
     /**
@@ -53,6 +55,10 @@ class VideoGameController extends Controller
             $newGame->genres()->attach($data['genres']);
         }
 
+        if (isset($data['platforms'])) {
+            $newGame->platforms()->attach($data['platforms']);
+        }
+
         return redirect()->route('videogames.index');
     }
 
@@ -61,9 +67,10 @@ class VideoGameController extends Controller
      */
     public function show(Videogame $videogame)
     {
-        $videogame->load('genres'); // cosi carico i generi associati al videogame
+        $videogame->load('genres', 'platforms'); // carico i generi e le piattaforme associati al videogame
         $allGenres = Genre::all(); 
-        return view('Pages.gameDetails', compact('videogame', 'allGenres'));
+        $allPlatforms = Platform::all();
+        return view('Pages.gameDetails', compact('videogame', 'allGenres', 'allPlatforms'));
     }
 
     /**
@@ -72,7 +79,8 @@ class VideoGameController extends Controller
     public function edit(Videogame $videogame)
     {
         $genres = Genre::all();
-        return view('Pages.editGame', compact('videogame', 'genres'));
+        $platforms = Platform::all();
+        return view('Pages.editGame', compact('videogame', 'genres', 'platforms'));
     }
 
     /**
@@ -98,6 +106,11 @@ class VideoGameController extends Controller
         if (isset($data['genres'])) {
             $videogame->genres()->sync($data['genres']);
         }
+
+        if (isset($data['platforms'])) {
+            $videogame->platforms()->sync($data['platforms']);
+        }
+        
         return redirect()->route('videogames.index');
     }
     
@@ -108,6 +121,7 @@ class VideoGameController extends Controller
     public function destroy(Videogame $videogame)
     {
         $videogame->genres()->detach();// elimino le associazioni con i generi
+        $videogame->platforms()->detach();// elimino le associazioni con le piattaforme
         if ($videogame->image) {
             Storage::delete($videogame->image); // elimino l'immagine dal filesystem
         }

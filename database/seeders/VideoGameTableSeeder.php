@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Videogame;
+use App\Models\Genre;
+use App\Models\Platform;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -53,6 +55,20 @@ class VideoGameTableSeeder extends Seeder
             $newVideogame->is_beta = $videogame['is_beta'];
             $newVideogame->price = $videogame['price'];
             $newVideogame->save();
+
+            // Associo alcuni generi e piattaforme casuali
+            $allGenres = Genre::all();
+            $allPlatforms = Platform::all();
+            
+            if ($allGenres->isNotEmpty()) {
+                $randomGenres = $allGenres->random(rand(1, min(3, $allGenres->count())));
+                $newVideogame->genres()->attach($randomGenres->pluck('id'));
+            }
+            
+            if ($allPlatforms->isNotEmpty()) {
+                $randomPlatforms = $allPlatforms->random(rand(1, min(3, $allPlatforms->count())));
+                $newVideogame->platforms()->attach($randomPlatforms->pluck('id'));
+            }
         }
     }
 }

@@ -1,0 +1,696 @@
+// Steam-like Color Palette
+$steam-dark-blue: #1b2838;
+$steam-blue: #2a475e;
+$steam-light-blue: #66c0f4;
+$steam-green: #90ba3c;
+$steam-dark-green: #688f2a;
+$steam-gray: #4c6b22;
+$steam-light-gray: #8f98a0;
+$steam-dark-gray: #2e3440;
+$steam-black: #171a21;
+$steam-white: #ffffff;
+$steam-orange: #ff6b35;
+
+// Main Layout
+.steam-container {
+  background: linear-gradient(135deg, $steam-black 0%, $steam-dark-blue 100%);
+  min-height: 100vh;
+  color: $steam-white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+// Header
+.steam-header {
+  background: $steam-dark-blue;
+  padding: 1rem 0;
+  border-bottom: 2px solid $steam-blue;
+  
+  .navbar {
+    background: transparent !important;
+    
+    .nav-link {
+      color: $steam-light-gray !important;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: $steam-light-blue !important;
+      }
+    }
+    
+    .navbar-brand {
+      color: $steam-white !important;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+}
+
+// Hero Section
+.hero-section {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23171a21"/><stop offset="100%" style="stop-color:%232a475e"/></linearGradient></defs><rect width="100" height="100" fill="url(%23g)"/></svg>');
+  background-size: cover;
+  padding: 4rem 0;
+  text-align: center;
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  }
+  
+  .lead {
+    font-size: 1.2rem;
+    color: $steam-light-gray;
+    margin-bottom: 2rem;
+  }
+  
+  .btn-steam {
+    background: linear-gradient(90deg, $steam-green 0%, $steam-dark-green 100%);
+    border: none;
+    color: $steam-white;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    
+    &:hover {
+      background: linear-gradient(90deg, $steam-dark-green 0%, $steam-green 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      color: $steam-white;
+    }
+  }
+}
+
+// Game Cards
+.game-card {
+  background: $steam-dark-gray;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  
+  &:hover {
+    transform: translateY(-5px);
+    border-color: $steam-light-blue;
+    box-shadow: 0 8px 20px rgba(102, 192, 244, 0.2);
+  }
+  
+  .game-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: linear-gradient(45deg, $steam-blue, $steam-dark-blue);
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+    
+    .game-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $steam-white;
+      margin-bottom: 0.5rem;
+    }
+    
+    .game-price {
+      color: $steam-green;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    
+    .game-meta {
+      font-size: 0.9rem;
+      color: $steam-light-gray;
+      margin-bottom: 1rem;
+    }
+    
+    .game-genres {
+      .badge {
+        background: $steam-blue;
+        color: $steam-white;
+        margin-right: 0.5rem;
+        margin-bottom: 0.25rem;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+        border-radius: 12px;
+      }
+    }
+  }
+}
+
+// Steam Cards for Forms and Dashboards
+.steam-card {
+  background: $steam-dark-gray;
+  border-radius: 12px;
+  border: 1px solid $steam-blue;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  
+  .card-header {
+    background: linear-gradient(135deg, $steam-blue 0%, $steam-dark-blue 100%);
+    padding: 1.5rem;
+    border-bottom: 1px solid $steam-light-blue;
+    
+    h4 {
+      color: $steam-white;
+      margin: 0;
+      font-weight: bold;
+    }
+    
+    .text-muted {
+      color: $steam-light-gray !important;
+    }
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+}
+
+// Games Grid Layout
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+// Enhanced Game Card for Dashboard
+.game-card {
+  .game-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+  .btn-action {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    
+    &.primary {
+      background: $steam-light-blue;
+      color: $steam-white;
+      
+      &:hover {
+        background: lighten($steam-light-blue, 10%);
+        transform: translateY(-1px);
+      }
+    }
+    
+    &.secondary {
+      background: $steam-green;
+      color: $steam-white;
+      
+      &:hover {
+        background: $steam-dark-green;
+        transform: translateY(-1px);
+      }
+    }
+    
+    &.danger {
+      background: $steam-orange;
+      color: $steam-white;
+      
+      &:hover {
+        background: darken($steam-orange, 10%);
+        transform: translateY(-1px);
+      }
+    }
+  }
+  
+  .platform-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: $steam-blue;
+    color: $steam-white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+}
+
+// Steam Secondary Button
+.btn-steam-secondary {
+  background: linear-gradient(90deg, $steam-light-blue 0%, $steam-blue 100%);
+  border: none;
+  color: $steam-white;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &:hover {
+    background: linear-gradient(90deg, $steam-blue 0%, $steam-light-blue 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    color: $steam-white;
+    text-decoration: none;
+  }
+}
+
+// Empty State
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  
+  .empty-icon {
+    font-size: 4rem;
+    color: $steam-light-blue;
+    margin-bottom: 1.5rem;
+  }
+  
+  h3 {
+    color: $steam-white;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: $steam-light-gray;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+// Steam Form Styles
+.steam-form {
+  .form-group {
+    margin-bottom: 2rem;
+  }
+  
+  .form-label {
+    color: $steam-white;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    i {
+      color: $steam-light-blue;
+    }
+  }
+  
+  .form-control, .form-select {
+    background: $steam-dark-blue;
+    border: 2px solid $steam-blue;
+    color: $steam-white;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      background: $steam-dark-blue;
+      border-color: $steam-light-blue;
+      box-shadow: 0 0 0 0.2rem rgba(102, 192, 244, 0.25);
+      color: $steam-white;
+    }
+    
+    &::placeholder {
+      color: $steam-light-gray;
+    }
+  }
+  
+  .form-text {
+    color: $steam-light-gray;
+    font-size: 0.85rem;
+  }
+  
+  .invalid-feedback {
+    color: $steam-orange;
+    font-size: 0.85rem;
+  }
+}
+
+// Steam Checkbox & Radio Styles
+.steam-form {
+  .form-check {
+    margin-bottom: 1rem;
+  }
+  
+  .form-check-input {
+    background-color: $steam-dark-blue;
+    border: 2px solid $steam-blue;
+    width: 1.2em;
+    height: 1.2em;
+    
+    &:checked {
+      background-color: $steam-green;
+      border-color: $steam-green;
+    }
+    
+    &:focus {
+      border-color: $steam-light-blue;
+      box-shadow: 0 0 0 0.2rem rgba(102, 192, 244, 0.25);
+    }
+  }
+  
+  .form-check-label {
+    color: $steam-white;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    
+    &:hover {
+      color: $steam-light-blue;
+    }
+  }
+  
+  .form-switch .form-check-input {
+    width: 2em;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255,255,255,0.25%29'/%3e%3c/svg%3e");
+    
+    &:checked {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255,255,255,1%29'/%3e%3c/svg%3e");
+    }
+  }
+}
+
+// Steam File Input
+.steam-form input[type="file"] {
+  background: $steam-dark-blue;
+  border: 2px dashed $steam-blue;
+  color: $steam-white;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: $steam-light-blue;
+    background: lighten($steam-dark-blue, 5%);
+  }
+  
+  &:focus {
+    border-color: $steam-light-blue;
+    box-shadow: 0 0 0 0.2rem rgba(102, 192, 244, 0.25);
+  }
+  
+  &::file-selector-button {
+    background: $steam-green;
+    border: none;
+    color: $steam-white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-right: 1rem;
+    cursor: pointer;
+    
+    &:hover {
+      background: $steam-dark-green;
+    }
+  }
+}
+
+// Steam Breadcrumb
+.steam-breadcrumb {
+  background: transparent;
+  padding: 1rem 0;
+  
+  .breadcrumb {
+    background: $steam-dark-gray;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin: 0;
+  }
+  
+  .breadcrumb-item {
+    a {
+      color: $steam-light-blue;
+      text-decoration: none;
+      
+      &:hover {
+        color: $steam-white;
+      }
+    }
+    
+    &.active {
+      color: $steam-white;
+    }
+    
+    &:not(:last-child)::after {
+      content: "›";
+      color: $steam-light-gray;
+      margin: 0 0.75rem;
+    }
+  }
+}
+
+// Steam Alerts
+.steam-alert {
+  background: linear-gradient(135deg, $steam-green 0%, $steam-dark-green 100%);
+  border: 1px solid $steam-green;
+  color: $steam-white;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  
+  &.alert-success {
+    background: linear-gradient(135deg, $steam-green 0%, $steam-dark-green 100%);
+    border-color: $steam-green;
+  }
+  
+  &.alert-danger {
+    background: linear-gradient(135deg, $steam-orange 0%, darken($steam-orange, 10%) 100%);
+    border-color: $steam-orange;
+  }
+  
+  &.alert-warning {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    border-color: #f39c12;
+  }
+  
+  &.alert-info {
+    background: linear-gradient(135deg, $steam-light-blue 0%, $steam-blue 100%);
+    border-color: $steam-light-blue;
+  }
+}
+
+// Welcome Message
+.welcome-message {
+  text-align: center;
+  padding: 2rem 0;
+  
+  h3 {
+    color: $steam-light-blue;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: $steam-light-gray;
+    font-size: 1.1rem;
+  }
+}
+
+// User Avatar
+.user-avatar {
+  color: $steam-light-blue;
+  opacity: 0.8;
+}
+
+// Enhanced Quick Links
+.quick-links {
+  .link-item {
+    background: $steam-dark-blue;
+    border: 1px solid $steam-blue;
+    
+    &:hover {
+      background: $steam-blue;
+      border-color: $steam-light-blue;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 192, 244, 0.2);
+    }
+  }
+}
+
+// Steam Links
+.link-steam {
+  color: $steam-light-blue;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: $steam-white;
+    text-decoration: underline;
+  }
+}
+
+// Auth Forms Specific Styles
+.steam-form {
+  .form-group:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 0;
+    
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  
+  .game-card {
+    margin-bottom: 1rem;
+  }
+  
+  .quick-links {
+    .link-item {
+      .link-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+      }
+    }
+  }
+  
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .game-card .game-actions {
+    flex-direction: column;
+    
+    .btn-action {
+      justify-content: center;
+    }
+  }
+}
+
+// Game Details Page
+.game-detail-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.game-image-container {
+  background: linear-gradient(45deg, $steam-dark-blue, $steam-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.game-title-detail {
+  color: $steam-white;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.game-description {
+  color: $steam-light-gray;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.game-metadata {
+  .info-box {
+    background: $steam-dark-blue;
+    border: 1px solid $steam-blue;
+    border-radius: 6px;
+    padding: 1rem;
+    height: 100%;
+  }
+  
+  .info-label {
+    color: $steam-light-blue;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .info-value {
+    color: $steam-white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  .game-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+.game-actions-detail {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  border-top: 1px solid $steam-blue;
+  margin-top: 2rem;
+  
+  .btn-action {
+    flex: 1;
+    min-width: 150px;
+    justify-content: center;
+  }
+}
+
+// Badge Steam Style
+.badge-steam {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 20px;
+  
+  &.bg-warning {
+    background: linear-gradient(90deg, #f39c12 0%, #e67e22 100%) !important;
+  }
+  
+  &.bg-success {
+    background: linear-gradient(90deg, $steam-green 0%, $steam-dark-green 100%) !important;
+  }
+}
+
+// Responsive Design for Game Details
+@media (max-width: 768px) {
+  .game-detail-image {
+    height: 200px;
+  }
+  
+  .game-title-detail {
+    font-size: 1.5rem;
+  }
+  
+  .game-actions-detail {
+    flex-direction: column;
+    
+    .btn-action {
+      min-width: auto;
+    }
+  }
+}
