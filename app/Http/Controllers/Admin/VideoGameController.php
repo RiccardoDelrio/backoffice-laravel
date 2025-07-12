@@ -96,7 +96,10 @@ class VideoGameController extends Controller
         $videogame->price = $data['price'] ?? null;
         $videogame->is_beta = $data['is_beta'] ?? false;
         if(array_key_exists("image", $data)) {
-            Storage::delete($videogame->image); 
+            // Elimina l'immagine precedente solo se esiste
+            if ($videogame->image) {
+                Storage::delete($videogame->image);
+            }
             $url_image = Storage::putFile('uploads', $data['image']);
             $videogame->image = $url_image;
         } 
