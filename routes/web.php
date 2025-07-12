@@ -18,5 +18,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('videogames', VideoGameController::class);
+Route::resource('videogames', VideoGameController::class)-> middleware(['auth', 'verified'])->names('videogames');
 require __DIR__.'/auth.php';
