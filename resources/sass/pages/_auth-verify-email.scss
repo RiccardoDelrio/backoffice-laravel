@@ -1,0 +1,26 @@
+// Verify Email Page Styles
+.auth-info-alert {
+    background: linear-gradient(135deg, #66c0f4 0%, #2a475e 100%);
+    border: 1px solid #66c0f4;
+    color: white;
+}
+
+.auth-verification-icon {
+    font-size: 4rem;
+    color: #66c0f4;
+}
+
+.auth-verification-text {
+    color: #c5c3c0;
+    line-height: 1.6;
+}
+
+.auth-logout-divider {
+    border-top: 1px solid #2a475e;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.hidden-form {
+    display: none;
+}

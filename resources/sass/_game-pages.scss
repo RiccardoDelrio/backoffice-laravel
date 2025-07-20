@@ -1,0 +1,48 @@
+// Game Pages Styles
+
+.current-image-preview {
+    .current-game-image {
+        max-width: 150px;
+        height: auto;
+        border-radius: 8px;
+        border: 2px solid $steam-blue;
+    }
+}
+
+.form-actions-divider {
+    border-top: 1px solid #2a475e;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.game-form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-form-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+// Game metadata styles
+.game-price-display {
+    &.free-game {
+        color: $steam-green;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    &.paid-game {
+        color: $steam-light-blue;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+}
+
+.game-status-badges {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}

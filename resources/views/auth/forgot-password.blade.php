@@ -1,6 +1,14 @@
 @extends('layouts.master')
 
-@section('title', 'Recupera Password - SteamLike')
+@section('title', 'Recupera                            <div class="auth-form-actions auth-form-divider">
+                                <a href="{{ route('login') }}" class="link-steam">
+                                    Torna al login
+                                </a>
+
+                                <button type="submit" class="btn-steam">
+                                    <i class="fas fa-paper-plane"></i> {{ __('Invia Link Reset') }}
+                                </button>
+                            </div>- SteamLike')
 
 @section('content')
     <!-- Hero Section -->
@@ -30,8 +38,7 @@
                             </div>
                         @endif
 
-                        <div class="alert alert-info mb-4"
-                            style="background: linear-gradient(135deg, #66c0f4 0%, #2a475e 100%); border: 1px solid #66c0f4; color: white;">
+                        <div class="alert alert-info mb-4 auth-info-alert">
                             <i class="fas fa-info-circle me-2"></i>
                             Ti invieremo un link per reimpostare la password alla tua email.
                         </div>

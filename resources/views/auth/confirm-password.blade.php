@@ -23,8 +23,7 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="alert alert-info mb-4"
-                            style="background: linear-gradient(135deg, #66c0f4 0%, #2a475e 100%); border: 1px solid #66c0f4; color: white;">
+                        <div class="alert alert-info mb-4 auth-info-alert">
                             <i class="fas fa-info-circle me-2"></i>
                             Per la tua sicurezza, conferma la tua password prima di continuare.
                         </div>
@@ -47,8 +46,7 @@
                                 @enderror
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-center pt-4"
-                                style="border-top: 1px solid #2a475e;">
+                            <div class="auth-form-actions auth-form-divider">
                                 @if (Route::has('password.request'))
                                     <a href="{{ route('password.request') }}" class="link-steam">
                                         {{ __('Password dimenticata?') }}

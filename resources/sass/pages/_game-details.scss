@@ -1,0 +1,87 @@
+// Game Details Page Styles
+.game-price-display {
+    &.free-game {
+        color: #90ba3c;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    &.paid-game {
+        color: #66c0f4;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+}
+
+.game-status-badges {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.game-detail-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.game-image-container {
+    padding: 1rem;
+    background: linear-gradient(45deg, #2a475e, #1b2838);
+}
+
+.game-title-detail {
+    color: #66c0f4;
+    margin-bottom: 1rem;
+}
+
+.info-box {
+    .info-label {
+        color: #c5c3c0;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .info-value {
+        color: white;
+        margin-bottom: 0;
+    }
+}
+
+.game-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .badge {
+        background: #2a475e;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+    }
+}
+
+.game-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .platform-badge {
+        background: #1b2838;
+        color: #c5c3c0;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+}
+
+.game-actions-detail {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}

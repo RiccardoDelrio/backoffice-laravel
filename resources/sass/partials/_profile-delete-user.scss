@@ -1,0 +1,23 @@
+// Delete User Form Styles
+.danger-zone {
+    .danger-title {
+        color: #dc3545;
+        font-weight: 600;
+    }
+
+    .danger-description {
+        color: #6c757d;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-danger {
+        background: #dc3545;
+        border-color: #dc3545;
+        color: white;
+
+        &:hover {
+            background: #c82333;
+            border-color: #bd2130;
+        }
+    }
+}

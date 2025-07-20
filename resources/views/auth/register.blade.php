@@ -80,7 +80,7 @@
                                    placeholder="Ripeti la password">
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center pt-4" style="border-top: 1px solid #2a475e;">
+                        <div class="auth-form-actions auth-form-divider">
                             <a href="{{ route('login') }}" class="link-steam">
                                 Hai già un account? Accedi
                             </a>

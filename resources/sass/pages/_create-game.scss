@@ -1,0 +1,17 @@
+// Create Game Page Styles
+.form-actions-divider {
+    border-top: 1px solid #2a475e;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.game-form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-form-buttons {
+    display: flex;
+    gap: 1rem;
+}

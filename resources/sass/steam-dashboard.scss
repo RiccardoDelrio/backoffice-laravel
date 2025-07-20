@@ -11,6 +11,11 @@ $steam-black: #171a21;
 $steam-white: #ffffff;
 $steam-orange: #ff6b35;
 
+// Import modular SCSS files
+@import 'auth-pages';
+@import 'game-pages';
+@import 'welcome-page';
+
 // Main Layout
 .steam-container {
   background: linear-gradient(135deg, $steam-black 0%, $steam-dark-blue 100%);

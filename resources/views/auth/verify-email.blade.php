@@ -32,10 +32,10 @@
 
                         <div class="text-center mb-4">
                             <div class="mb-3">
-                                <i class="fas fa-envelope-circle-check" style="font-size: 4rem; color: #66c0f4;"></i>
+                                <i class="fas fa-envelope-circle-check auth-verification-icon"></i>
                             </div>
 
-                            <p class="mb-4" style="color: #8f98a0; line-height: 1.6;">
+                            <p class="mb-4 auth-verification-text">
                                 Prima di procedere, controlla la tua email per il link di verifica.
                                 <br>
                                 Se non hai ricevuto l'email, puoi richiederne una nuova.
