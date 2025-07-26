@@ -1,212 +1,153 @@
+
 @extends('layouts.master')
 
-@section('title', 'Steam Game Store - Benvenuto')
+@section('title', 'Steam Game Store - Admin Panel')
 
 @section('content')
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="container">
-        <h1>Benvenuto nel tuo Game Store</h1>
-        <p class="lead">Scopri migliaia di giochi incredibili, dalle ultime novità ai classici intramontabili</p>
-        <a href="{{ route('videogames.index') }}" class="btn-steam">Esplora la Libreria</a>
+<div class="welcome-page-wrapper">
+<!-- Hero Section with Steam aesthetic -->
+<div class="steam-header">
+    <div class="steam-particles"></div>
+    <div class="container text-center position-relative">
+        <img src="{{ asset('Steam.png') }}" alt="Steam" class="mb-3">
+        <h1 class="text-white mb-3">
+            Steam Admin Panel
+        </h1>
+        <p class="text-white-50 mb-0">
+            Gestisci il tuo catalogo videogiochi con un'interfaccia moderna e intuitiva
+        </p>
     </div>
-</section>
+</div>
 
-    <div class="container py-5">
-        <!-- Quick Stats -->
-        <div class="row mb-5">
-            <div class="col-md-3 mb-3">
-                <div class="stat-card">
-                    <span class="stat-number">{{ $featuredGames->count() + $popularGames->count() }}</span>
-                    <div class="stat-label">Giochi Disponibili</div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="stat-card">
-                    <span class="stat-number">{{ $genres->count() }}</span>
-                    <div class="stat-label">Generi</div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="stat-card">
-                    <span class="stat-number">{{ $platforms->count() }}</span>
-                    <div class="stat-label">Piattaforme</div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="stat-card">
-                    <span class="stat-number">{{ $newReleases->count() }}</span>
-                    <div class="stat-label">Nuove Uscite</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Featured Games -->
-        @if($featuredGames->count() > 0)
-        <div class="section-header">
-            <h2>🌟 Giochi in Evidenza</h2>
-        </div>
-        <div class="row mb-5">
-            @foreach($featuredGames->take(3) as $game)
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="game-card">
-                    @if($game->image)
-                        <img src="{{ asset('storage/' . $game->image) }}" alt="{{ $game->title }}" class="game-image">
-                    @else
-                        <div class="game-image d-flex align-items-center justify-content-center" style="background: linear-gradient(45deg, #2a475e, #1b2838);">
-                            <span style="font-size: 3rem;">🎮</span>
+<!-- Main Navigation Cards -->
+<div class="container steam-nav-container">
+    <div class="row g-4">
+        <!-- Videogames Management -->
+        <div class="col-md-6 col-lg-4">
+            <a href="{{ route('videogames.index') }}" class="text-decoration-none">
+                <div class="steam-nav-card">
+                    <div class="steam-nav-card-inner">
+                        <div class="steam-nav-icon">
+                            <i class="fas fa-gamepad"></i>
                         </div>
-                    @endif
-                    <div class="card-body">
-                        <div class="game-title">{{ $game->title }}</div>
-                        <div class="game-meta">
-                            {{ $game->developer }} • {{ $game->release_year }}
-                            @if($game->is_beta)
-                                <span class="badge bg-warning text-dark ms-2">BETA</span>
-                            @endif
-                        </div>
-                        <div class="game-genres mb-3">
-                            @foreach($game->genres as $genre)
-                                <span class="badge">{{ $genre->name }}</span>
-                            @endforeach
-                        </div>
-                        <div class="game-price">
-                      
+                        <h3>Videogiochi</h3>
+                        <p>Gestione completa del catalogo</p>
+                        <div class="steam-nav-arrow">
+                            <i class="fas fa-chevron-right"></i>
                         </div>
                     </div>
                 </div>
-            </div>
-            @endforeach
+            </a>
         </div>
-        @endif
 
-        <div class="row">
-            <!-- New Releases -->
-            <div class="col-lg-8">
-                @if($newReleases->count() > 0)
-                <div class="section-header">
-                    <h2>🚀 Nuove Uscite</h2>
+        <!-- Add New Game -->
+        <div class="col-md-6 col-lg-4">
+            <a href="{{ route('videogames.create') }}" class="text-decoration-none">
+                <div class="steam-nav-card steam-nav-card-highlight">
+                    <div class="steam-nav-card-inner">
+                        <div class="steam-nav-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <h3>Nuovo Gioco</h3>
+                        <p>Aggiungi titolo al catalogo</p>
+                        <div class="steam-nav-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
                 </div>
-                <div class="row mb-4">
-                    @foreach($newReleases as $game)
-                    <div class="col-md-6 mb-3">
-                        <div class="game-card">
-                            @if($game->image)
-                                <img src="{{ asset('storage/' . $game->image) }}" alt="{{ $game->title }}" class="game-image" style="height: 150px;">
-                            @else
-                                <div class="game-image d-flex align-items-center justify-content-center" style="height: 150px; background: linear-gradient(45deg, #2a475e, #1b2838);">
-                                    <span style="font-size: 2rem;">🎮</span>
-                                </div>
-                            @endif
-                            <div class="card-body">
-                                <div class="game-title">{{ $game->title }}</div>
-                                <div class="game-meta">{{ $game->release_year }}</div>
-                                <div class="game-price">
-                                    @if($game->price)
-                                        €{{ number_format($game->price, 2) }}
-                                    @else
-                                        Gratuito
-                                    @endif
-                                </div>
+            </a>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="col-md-6 col-lg-4">
+            <a href="{{ route('dashboard') }}" class="text-decoration-none">
+                <div class="steam-nav-card">
+                    <div class="steam-nav-card-inner">
+                        <div class="steam-nav-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Dashboard</h3>
+                        <p>Statistiche e panoramica</p>
+                        <div class="steam-nav-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="steam-info-panel">
+                <div class="text-center mb-4">
+                    <h3 class="steam-section-title">
+                        <i class="fas fa-cogs me-2"></i>
+                        Funzionalità del Sistema
+                    </h3>
+                    <p class="steam-subtitle">Strumenti avanzati per la gestione completa del catalogo</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="steam-feature-card">
+                            <div class="steam-feature-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h5>Gestione Videogiochi</h5>
+                            <p>Sistema CRUD completo per aggiungere, modificare, eliminare e visualizzare tutti i videogiochi del catalogo</p>
+                            <div class="steam-feature-stats">
+                                <small><i class="fas fa-check-circle text-success me-1"></i>Operazioni complete</small>
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                </div>
-                @endif
-
-                <!-- Popular Games Grid -->
-                @if($popularGames->count() > 0)
-                <div class="section-header">
-                    <h2>🔥 Giochi Popolari</h2>
-                </div>
-                <div class="row">
-                    @foreach($popularGames->take(4) as $game)
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <div class="game-card">
-                            @if($game->image)
-                                <img src="{{ asset('storage/' . $game->image) }}" alt="{{ $game->title }}" class="game-image" style="height: 120px;">
-                            @else
-                                <div class="game-image d-flex align-items-center justify-content-center" style="height: 120px; background: linear-gradient(45deg, #2a475e, #1b2838);">
-                                    <span style="font-size: 1.5rem;">🎮</span>
-                                </div>
-                            @endif
-                            <div class="card-body" style="padding: 1rem;">
-                                <div class="game-title" style="font-size: 1rem;">{{ Str::limit($game->title, 20) }}</div>
-                                <div class="game-price">
-                                    @if($game->price)
-                                        €{{ number_format($game->price, 2) }}
-                                    @else
-                                        Gratuito
-                                    @endif
-                                </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <div class="steam-feature-card">
+                            <div class="steam-feature-icon">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <h5>Classificazione Generi</h5>
+                            <p>Organizza i giochi per categorie e generi, creando un sistema di classificazione intuitivo e navigabile</p>
+                            <div class="steam-feature-stats">
+                                <small><i class="fas fa-layer-group text-info me-1"></i>Categorizzazione avanzata</small>
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                </div>
-                @endif
-            </div>
-
-            <!-- Sidebar with Quick Links -->
-            <div class="col-lg-4">
-                <div class="section-header">
-                    <h2>⚡ Collegamenti Rapidi</h2>
-                </div>
-                <div class="quick-links">
-                    <a href="{{ route('videogames.index') }}" class="link-item">
-                        <div class="link-icon">📚</div>
-                        <div class="link-text">
-                            <h5>Libreria Completa</h5>
-                            <p>Esplora tutti i giochi disponibili</p>
-                        </div>
-                    </a>
                     
-                    <a href="{{ route('videogames.create') }}" class="link-item">
-                        <div class="link-icon">➕</div>
-                        <div class="link-text">
-                            <h5>Aggiungi Gioco</h5>
-                            <p>Carica un nuovo gioco nel catalogo</p>
-                        </div>
-                    </a>
-                    
-                    @auth
-                    <a href="{{ route('dashboard') }}" class="link-item">
-                        <div class="link-icon">🎛️</div>
-                        <div class="link-text">
-                            <h5>Dashboard Admin</h5>
-                            <p>Gestisci il tuo catalogo</p>
-                        </div>
-                    </a>
-                    @endauth
-                    
-                    <div class="mt-4">
-                        <div class="section-header">
-                            <h2>🏷️ Generi Disponibili</h2>
-                        </div>
-                        <div class="d-flex flex-wrap">
-                            @foreach($genres->take(8) as $genre)
-                                <span class="badge me-2 mb-2" style="background: #2a475e; padding: 0.5rem 0.8rem; font-size: 0.8rem;">
-                                    {{ $genre->name }}
-                                </span>
-                            @endforeach
+                    <div class="col-lg-3 col-md-6">
+                        <div class="steam-feature-card">
+                            <div class="steam-feature-icon">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <h5>Multi-Piattaforma</h5>
+                            <p>Supporto per diverse piattaforme gaming: PC, PlayStation, Xbox, Nintendo Switch e piattaforme mobile</p>
+                            <div class="steam-feature-stats">
+                                <small><i class="fas fa-globe text-primary me-1"></i>Compatibilità estesa</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="mt-4">
-                        <div class="section-header">
-                            <h2>🕹️ Piattaforme</h2>
-                        </div>
-                        <div class="d-flex flex-wrap">
-                            @foreach($platforms->take(6) as $platform)
-                                <span class="badge me-2 mb-2" style="background: #90ba3c; padding: 0.5rem 0.8rem; font-size: 0.8rem;">
-                                    {{ $platform->name }}
-                                </span>
-                            @endforeach
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <div class="steam-feature-card">
+                            <div class="steam-feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h5>Dashboard Analytics</h5>
+                            <p>Monitora statistiche, tendenze e performance del catalogo con grafici e report dettagliati in tempo reale</p>
+                            <div class="steam-feature-stats">
+                                <small><i class="fas fa-analytics text-warning me-1"></i>Insights in tempo reale</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
+
 @endsection

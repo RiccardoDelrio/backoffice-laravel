@@ -1,28 +1,13 @@
-@extends('layouts.master');@section('content')
+@extends('layouts.master')
+@section('content')
 
-<div class="container">
-    <h2 class="fs-4 text-secondary my-4">
-        {{ __('Profile') }}
+<div class="container py-5">
+    <h2 class="fs-3 text-secondary mb-4 text-center">
+        <i class="fas fa-user-cog me-2"></i>Profile
     </h2>
-    <div class="card p-4 mb-4 bg-white shadow rounded-lg">
-
-        @include('profile.partials.update-profile-information-form')
-
-    </div>
-
-    <div class="card p-4 mb-4 bg-white shadow rounded-lg">
-
-
-        @include('profile.partials.update-password-form')
-
-    </div>
-
-    <div class="card p-4 mb-4 bg-white shadow rounded-lg">
-
-
-        @include('profile.partials.delete-user-form')
-
-    </div>
+    @include('profile.partials.update-profile-information-form')
+    @include('profile.partials.update-password-form')
+    @include('profile.partials.delete-user-form')
 </div>
 
 @endsection

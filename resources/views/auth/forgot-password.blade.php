@@ -1,14 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Recupera                            <div class="auth-form-actions auth-form-divider">
-                                <a href="{{ route('login') }}" class="link-steam">
-                                    Torna al login
-                                </a>
-
-                                <button type="submit" class="btn-steam">
-                                    <i class="fas fa-paper-plane"></i> {{ __('Invia Link Reset') }}
-                                </button>
-                            </div>- SteamLike')
+@section('title', 'Recupera - SteamLike')
 
 @section('content')
     <!-- Hero Section -->

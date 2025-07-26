@@ -14,7 +14,6 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <!-- Steam Breadcrumb -->
             <nav aria-label="breadcrumb" class="steam-breadcrumb mb-4">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('videogames.index') }}">Libreria Giochi</a></li>
