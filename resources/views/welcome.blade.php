@@ -98,7 +98,7 @@
                                 <i class="fas fa-gamepad"></i>
                             </div>
                             <h5>Gestione Videogiochi</h5>
-                            <p>Sistema CRUD completo per aggiungere, modificare, eliminare e visualizzare tutti i videogiochi del catalogo</p>
+                            <p>Sistema completo per aggiungere, modificare, eliminare e visualizzare tutti i videogiochi del catalogo</p>
                             <div class="steam-feature-stats">
                                 <small><i class="fas fa-check-circle text-success me-1"></i>Operazioni complete</small>
                             </div>

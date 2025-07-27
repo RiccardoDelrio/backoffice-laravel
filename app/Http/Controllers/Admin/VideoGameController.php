@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use App\Models\Platform;
 use App\Models\Videogame;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class VideoGameController extends Controller
+class VideoGameController 
 {
     /**
      * Display a listing of the resource.

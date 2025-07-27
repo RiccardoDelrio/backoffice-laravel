@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use App\Models\Platform;
 use App\Models\Videogame;
 use Illuminate\Http\Request;
 
-class VideogameController extends Controller
+class VideogameController
 {
    public function index(){
         $videogames = Videogame::with('genres', 'platforms')->get();
